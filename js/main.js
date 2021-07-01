@@ -6,7 +6,7 @@
 
     var fxCanvas = null;
     var texture = null;
-
+    
     function checkRequirements() {
         var deferred = new $.Deferred();
 
@@ -83,7 +83,15 @@
             .then(function (stream) {
                 //Setup the video stream
                 video.srcObject = stream;
+            
+            const constraints = {
+             "video": {
+               "facingMode": 
+                  { "ideal": "environment" }
+              }
+            };
 
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.addEventListener("loadedmetadata", function (e) {
                     //get video width and height as it might be different than we requested
                     pictureWidth = this.videoWidth;
@@ -111,6 +119,7 @@
         return deferred.promise();
     }
 
+    
     function step1() {
         checkRequirements()
             .then(searchForRearCamera)

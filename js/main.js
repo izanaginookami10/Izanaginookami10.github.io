@@ -83,15 +83,15 @@
         
             .then(function (stream) {
                 //Setup the video stream
-                //video.srcObject = stream
-                const constraints = {
+                video.srcObject = stream
+                /*const constraints = {
                  "video": {
                    "facingMode": 
                       { "ideal": "environment" }
                   }
                 };
 
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);*/
                 video.addEventListener("loadedmetadata", function (e) {
                     //get video width and height as it might be different than we requested
                     pictureWidth = this.videoWidth;
